@@ -8,11 +8,20 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const jwt = require("jsonwebtoken");
 const admin = require('firebase-admin');
 
-const decoded = Buffer.from(process.env.FIREBASE_CONFIG, 'base64').toString('utf-8');
-const credentials = JSON.parse(decoded);
+// const serviceAccount = require("./serviceAccountKey.json");
 
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+// });
+
+// Decode the base64
+const serviceAccount = JSON.parse(
+  Buffer.from(process.env.GOOGLE_CREDENTIALS_BASE64, "base64").toString("utf8")
+);
+
+// Initialize
 admin.initializeApp({
-  credential: admin.credential.cert(credentials)
+  credential: admin.credential.cert(serviceAccount),
 });
 
 const db = admin.firestore();
