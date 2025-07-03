@@ -32,7 +32,7 @@ const app = express();
 // 5) Middleware
 app.use(cors({
   origin: [
-    "http://localhost:5173",
+    "https://clinquant-bombolone-37d80e.netlify.app",
     "https://snazzy-puffpuff-d160dc.netlify.app"
   ],
 }));
@@ -63,7 +63,7 @@ app.post("/create-checkout-session", async (req, res) => {
         },
       ],
       success_url: `https://snazzy-puffpuff-d160dc.netlify.app/?userId=${docId}`,
-      cancel_url: "http://localhost:5173/cancel",
+      cancel_url: "https://clinquant-bombolone-37d80e.netlify.app/cancel",
       metadata: {
         firestoreDocId: docId,
       },
